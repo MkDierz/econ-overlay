@@ -1,5 +1,5 @@
 <template>
   <UContainer>
-    <PExchange />
+    <FeatureExchange />
   </UContainer>
 </template>

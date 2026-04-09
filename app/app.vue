@@ -2,7 +2,7 @@
 
 <template>
   <UApp>
-    <CTopBar />
+    <CoreTopBar />
 
     <UMain>
       <NuxtPage />
@@ -10,6 +10,6 @@
 
     <USeparator />
 
-    <CBottomBar />
+    <CoreBottomBar />
   </UApp>
 </template>

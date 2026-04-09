@@ -92,14 +92,14 @@ watch(
         </UFormField>
 
         <div class="grid gap-3 grid-cols-1">
-          <GDatePickerField
+          <GeneralDatePickerField
             v-model="customOverlay.start"
             label="Start"
             name="start"
             aria-label="Select custom start date"
           />
 
-          <GDatePickerField
+          <GeneralDatePickerField
             v-model="customOverlay.end"
             label="End"
             name="end"

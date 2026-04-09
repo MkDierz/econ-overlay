@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { DropdownMenuItem } from '@nuxt/ui'
 import { parseDate, CalendarDate } from '@internationalized/date'
 
 const pinia = usePinia()
@@ -27,16 +26,6 @@ const providerItems = computed(() => {
   ]
 })
 
-const rangePresets = [
-  { value: '1y', label: '1 Year' },
-  { value: '5y', label: '5 Years' },
-  { value: '10y', label: '10 Years' },
-  { value: '15y', label: '15 Years' },
-  { value: '20y', label: '20 Years' },
-  { value: '25y', label: '25 Years' },
-  { value: 'max', label: 'Max' }
-]
-
 const currencyItems = computed(() => {
   return chartStore.currencies
     .map((currency) => {
@@ -61,7 +50,6 @@ const rangeProxy = computed({
   get: () => {
     try {
       return {
-        // Convert the strings from your store into CalendarDate objects
         start: fromDate.value ? parseDate(fromDate.value) : new CalendarDate(2024, 1, 1),
         end: toDate.value ? parseDate(toDate.value) : new CalendarDate(2024, 1, 31)
       }
@@ -72,27 +60,18 @@ const rangeProxy = computed({
     }
   },
   set: (newRange) => {
-    // Convert the CalendarDate objects back into "YYYY-MM-DD" strings for the store
     fromDate.value = newRange.start.toString()
     toDate.value = newRange.end.toString()
   }
 })
 
-// Use Computed to ensure Nuxt UI SelectMenu compatibility
 const selectableCurrencyItems = computed(() => currencyItems.value.map(i => ({ label: i.label, value: i.value })))
 
-// Helper to swap currencies (UX improvement)
 const swapCurrencies = () => {
   const temp = baseCurrency.value
   baseCurrency.value = quoteCurrency.value
   quoteCurrency.value = temp
 }
-const items = ref<DropdownMenuItem[]>(rangePresets.map((r) => {
-  return {
-    label: r.label,
-    onSelect: () => chartStore.setRangePreset(r.value)
-  }
-}))
 
 onMounted(async () => {
   if (chartStore.currencies.length === 0 || chartStore.providers.length === 0) {
@@ -191,7 +170,7 @@ onMounted(async () => {
           name="provider"
           class="w-full sm:col-span-3"
         >
-          <GDateRangePickerWithPresets
+          <GeneralDateRangePickerWithPresets
             v-model="rangeProxy"
             label="Date Range"
           />
