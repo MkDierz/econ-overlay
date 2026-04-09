@@ -1,0 +1,15 @@
+{
+  "extends": ["github>nuxt/renovate-config-nuxt"],
+  "lockFileMaintenance": { "enabled": true },
+  "packageRules": [
+    {
+      "matchDepTypes": ["resolutions"],
+      "enabled": false
+    }
+  ],
+  "postUpgradeTasks": {
+    "commands": ["bun x bun-dedupe"],
+    "fileFilters": ["bun.lock", "bun.lockb"],
+    "executionMode": "branch"
+  }
+}
