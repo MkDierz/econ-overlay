@@ -1,5 +1,5 @@
 <template>
   <UContainer>
-    <PHome />
+    <FeatureHome />
   </UContainer>
 </template>

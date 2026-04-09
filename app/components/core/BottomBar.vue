@@ -1,20 +1,44 @@
+<script setup lang="ts">
+const socialLinks = [
+  {
+    to: 'https://github.com/MkDierz',
+    icon: 'i-simple-icons-github',
+    label: 'GitHub'
+  },
+  {
+    to: 'https://www.linkedin.com/in/syibbran-mulaesyi/',
+    icon: 'i-simple-icons-linkedin',
+    label: 'LinkedIn'
+  }
+]
+</script>
+
 <template>
-  <UFooter>
+  <UFooter class="border-t border-slate-200/80">
     <template #left>
-      <p class="text-sm text-muted">
-        Built with Nuxt UI • © {{ new Date().getFullYear() }}
-      </p>
+      <div class="space-y-1">
+        <p class="text-sm font-medium text-slate-700">
+          Econ Overlay
+        </p>
+        <p class="text-sm text-muted">
+          Built by Syibbran Mulaesyi • © {{ new Date().getFullYear() }}
+        </p>
+      </div>
     </template>
 
     <template #right>
-      <UButton
-        to="https://github.com/nuxt-ui-templates/starter"
-        target="_blank"
-        icon="i-simple-icons-github"
-        aria-label="GitHub"
-        color="neutral"
-        variant="ghost"
-      />
+      <div class="flex items-center gap-1">
+        <UButton
+          v-for="link in socialLinks"
+          :key="link.to"
+          :to="link.to"
+          target="_blank"
+          :icon="link.icon"
+          :aria-label="link.label"
+          color="neutral"
+          variant="ghost"
+        />
+      </div>
     </template>
   </UFooter>
 </template>
