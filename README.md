@@ -90,13 +90,13 @@ The store is implemented with Pinia's setup-style API, so shared filter values a
 Install dependencies:
 
 ```bash
-pnpm install
+bun install
 ```
 
 Start the development server:
 
 ```bash
-pnpm dev
+bun dev
 ```
 
 The app runs locally at:
@@ -110,13 +110,13 @@ http://localhost:3000
 Run linting:
 
 ```bash
-pnpm lint
+bun lint
 ```
 
 Run type checking:
 
 ```bash
-pnpm typecheck
+bun typecheck
 ```
 
 ## Production
@@ -124,13 +124,13 @@ pnpm typecheck
 Build for production:
 
 ```bash
-pnpm build
+bun build
 ```
 
 Preview the production build locally:
 
 ```bash
-pnpm preview
+bun preview
 ```
 
 ## Future Improvements
