@@ -27,24 +27,6 @@ export interface Currency {
 
 type GroupBy = 'day' | 'week' | 'month'
 
-function toDateInputValue(date: Date) {
-  return date.toISOString().slice(0, 10)
-}
-
-function defaultFromDate() {
-  const date = new Date()
-  date.setFullYear(date.getFullYear() - 10)
-  return toDateInputValue(date)
-}
-
-function defaultToDate() {
-  return toDateInputValue(new Date())
-}
-
-function isTodayOrFuture(date: string) {
-  return date >= defaultToDate()
-}
-
 export const useChartStore = defineStore('chart', () => {
   const baseCurrency = ref('USD')
   const quoteCurrency = ref('IDR')
@@ -118,7 +100,7 @@ export const useChartStore = defineStore('chart', () => {
     toDate.value = toDateInputValue(today)
 
     if (preset === 'max') {
-      fromDate.value = '1999-01-04'
+      fromDate.value = '1980-01-04'
       return
     }
 
@@ -130,6 +112,11 @@ export const useChartStore = defineStore('chart', () => {
     const from = new Date(today)
     from.setFullYear(from.getFullYear() - yearsToSubtract)
     fromDate.value = toDateInputValue(from)
+  }
+
+  function setDateRange(start: string, end: string) {
+    fromDate.value = start
+    toDate.value = end
   }
 
   async function fetchRates() {
@@ -181,6 +168,7 @@ export const useChartStore = defineStore('chart', () => {
     providerParam,
     fetchMetadata,
     setRangePreset,
+    setDateRange,
     fetchRates
   }
 })
