@@ -41,7 +41,7 @@ const stats = [
 
 <template>
   <div class="space-y-16 py-10 md:py-14">
-    <section class="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-[radial-gradient(circle_at_top_left,_rgba(22,163,74,0.16),_transparent_28%),linear-gradient(135deg,_#f8fafc_0%,_#ecfdf5_45%,_#ffffff_100%)] px-6 py-10 shadow-sm md:px-10 md:py-14">
+    <section class="relative overflow-hidden rounded-4xl border border-slate-200 bg-[radial-gradient(circle_at_top_left,rgba(22,163,74,0.16),transparent_28%),linear-gradient(135deg,#f8fafc_0%,#ecfdf5_45%,#ffffff_100%)] px-6 py-10 shadow-sm md:px-10 md:py-14">
       <div class="absolute -right-20 top-8 h-44 w-44 rounded-full bg-emerald-200/40 blur-3xl" />
       <div class="absolute bottom-0 left-1/3 h-28 w-28 rounded-full bg-amber-200/40 blur-2xl" />
 
