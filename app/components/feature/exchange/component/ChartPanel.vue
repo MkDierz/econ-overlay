@@ -35,6 +35,10 @@ const categories = computed(() => {
   }
 
   return {
+    value: {
+      name: chartStore.symbol,
+      color: '#f2f2f2'
+    },
     ...visibleOverlays.value.reduce(
       (acc, overlay) => {
         acc[overlay.id] = {
