@@ -25,6 +25,32 @@ const overlayPresetItems = computed(() => {
     }
   })
 })
+
+function applyPreset(presetId: string) {
+  overlayStore.selectPreset(presetId)
+
+  const overlays = overlayStore.selectedPreset.overlays
+
+  if (overlays.length === 0) {
+    return
+  }
+
+  const [firstOverlay, ...restOverlays] = overlays
+
+  if (!firstOverlay) {
+    return
+  }
+
+  const start = restOverlays.reduce((min, overlay) => {
+    return overlay.start < min ? overlay.start : min
+  }, firstOverlay.start)
+
+  const end = restOverlays.reduce((max, overlay) => {
+    return overlay.end > max ? overlay.end : max
+  }, firstOverlay.end)
+
+  chartStore.setDateRange(start, end)
+}
 </script>
 
 <template>
@@ -46,12 +72,13 @@ const overlayPresetItems = computed(() => {
         description="Choose the overlay set to segment the chart."
       >
         <USelect
-          v-model="selectedPresetId"
+          :model-value="selectedPresetId"
           arrow
           color="neutral"
           variant="subtle"
           :items="overlayPresetItems"
           class="w-full md:w-fit"
+          @update:model-value="applyPreset"
         />
       </UFormField>
     </UForm>
